@@ -27,11 +27,21 @@ pipeline {
             steps {
                 sh '''
                 docker run -d \
-                --name $CONTAINER_NAME \
-                -p 3000:3000 \
-                $IMAGE_NAME
+                  --name $CONTAINER_NAME \
+                  -p 3000:3000 \
+                  $IMAGE_NAME
                 '''
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment Successful!'
+        }
+
+        failure {
+            echo 'Deployment Failed!'
         }
     }
 }
